@@ -18,12 +18,12 @@ header{
     background-color: white;
 }
 button{
-padding: 8px;
-outline:none;
-cursor: pointer;
-border: 1px solid lightgrey;
-border-radius: 5px;
-background-color: whitesmoke;
+    padding: 8px;
+    outline:none;
+    cursor: pointer;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    background-color: whitesmoke;
 }
 
 button:hover{
@@ -76,4 +76,39 @@ button:hover{
     margin-top: 10px;
     padding: 0 10px;
 
+}
+.flashcard{
+    width:370px;
+    height: 200px;
+    word-wrap: break-word;
+    margin:10px;
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.flashcard h2 {
+    font-size: 1rem;
+}
+@media(max-width:768px){
+    .flashcard{
+        margin:auto;
+    }
+    .flashcard{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width : 480px){
+    .nav{
+        flex-direction: column;
+        align-items: center;
+    }
+    .create-box{
+        width: 100%;
+    }
+    .flashcard{
+        width: 100%;
+    }
+    
 }
