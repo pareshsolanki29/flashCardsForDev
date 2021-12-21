@@ -9,6 +9,7 @@ contentArray.forEach(divMaker)
 
 function addFlashCard(){
     let flashCardInfo = {
+        "id": contentArray.length,
         'my_quesion': question.value,
         'my_answer' :answer.value
     }
@@ -19,9 +20,17 @@ function addFlashCard(){
     answer.value='';
 }
 function divMaker(text){
+    console.log(contentArray)
     let div = document.createElement("div");
     let h2_q = document.createElement("h2")
     let h2_a = document.createElement("h2")
+    let delflashCard = document.createElement("button");
+    div.setAttribute('id', text.id);
+    let showAns = document.createElement("button");
+    showAns.innerHTML= "Show Answer";
+
+    delflashCard.innerHTML= "Delete";
+    delflashCard.setAttribute('style', "margin:auto; display: flex; justify-content: center ")
     div.className = "flashcard";
     h2_q.setAttribute('style', "border-top: 1px solid red; padding: 15px; margin-top:30px;")
     h2_q.innerHTML = text.my_quesion;
@@ -29,14 +38,29 @@ function divMaker(text){
     h2_a.innerHTML = text.my_answer;
     div.appendChild(h2_q)
     div.appendChild(h2_a)
-    div,addEventListener("click", function(){
+    showAns.addEventListener("click", function(){
         if(h2_a.style.display == "none"){
             h2_a.style.display = "block"
         }else{
             h2_a.style.display = "none"
         }
     })
+    delflashCard.addEventListener("click", function(e){
+        console.log(e.target.parentElement.id)
+           if(e.target.parentElement.id){
+               let delId = e.target.parentElement.id
+                contentArray = contentArray.filter((card, index )  => { index !== delId})
+           }
+           console.log(contentArray)
+            localStorage.setItem('items', JSON.stringify(contentArray))
+            contentArray.forEach(divMaker)
+
+    })
+        div.appendChild(delflashCard) 
+        div.appendChild(showAns)   
+
         flashcards.appendChild(div)
+
 }
 function deleteAllFlashCards(){
     localStorage.clear();
